@@ -1,9 +1,9 @@
-interface QuickUnionInterface {
+interface UnionFindInterface {
     void union(int p, int q);
     boolean connected(int p, int q);
 }
 
-class QuickFindUF implements QuickUnionInterface {
+class QuickFindUF implements UnionFindInterface {
     private int id[];
 
     QuickFindUF(int N) {
@@ -28,9 +28,9 @@ class QuickFindUF implements QuickUnionInterface {
     }
 }
 
-public class QuickUnion {
+public class QuickFind {
     public static void main(String[] args) {
-        QuickUnionInterface qu = new QuickFindUF(5);
+        UnionFindInterface qu = new QuickFindUF(5);
 
         qu.union(0, 1);
         qu.union(3, 4);
