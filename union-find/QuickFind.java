@@ -4,6 +4,7 @@ interface UnionFindInterface {
 }
 
 class QuickFindUF implements UnionFindInterface {
+
     private int id[];
 
     QuickFindUF(int N) {
