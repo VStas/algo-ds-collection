@@ -1,9 +1,26 @@
-public class ResizingArrayStack<Item> {
+import java.util.Iterator;
+
+public class ResizingArrayStack<Item> implements Iterable<Item> {
     private int N = 0;
     private Item[] arr;
 
     public ResizingArrayStack() {
         arr = (Item[]) new Object[1];
+    }
+
+    public Iterator<Item> iterator() {
+        return new StackIterator();
+    }
+
+    private class StackIterator implements Iterator<Item> {
+        private int i = N;
+        public boolean hasNext() {
+            return i > 0;
+        }
+        public Item next() {
+            i -= 1;
+            return arr[i];
+        }
     }
 
     public void push(Item item) {
@@ -42,6 +59,11 @@ public class ResizingArrayStack<Item> {
         stack.push("hello");
         stack.push("boop");
         stack.push("bye");
+
+        for (String str : stack) {
+            System.out.println(str);
+        }
+
         assert(stack.pop() == "bye");
         assert(!stack.isEmpty());
         assert(stack.pop() == "boop");
