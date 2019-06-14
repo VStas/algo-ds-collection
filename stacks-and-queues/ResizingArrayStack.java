@@ -1,12 +1,12 @@
-public class ResizingArrayStackOfStrings {
+public class ResizingArrayStack<Item> {
     private int N = 0;
-    private String[] arr;
+    private Item[] arr;
 
-    public ResizingArrayStackOfStrings() {
-        arr = new String[1];
+    public ResizingArrayStack() {
+        arr = (Item[]) new Object[1];
     }
 
-    public void push(String item) {
+    public void push(Item item) {
         if (N == arr.length) {
             resize(2 * arr.length);
         }
@@ -14,9 +14,9 @@ public class ResizingArrayStackOfStrings {
         N += 1;
     }
 
-    public String pop() {
+    public Item pop() {
         N -= 1;
-        String item = arr[N];
+        Item item = arr[N];
         arr[N] = null;
         if (N > 0 && N == arr.length / 4) {
             resize(arr.length / 2);
@@ -30,7 +30,7 @@ public class ResizingArrayStackOfStrings {
 
     private void resize(int length) {
         System.out.println("Resizing to " + length);
-        String[] newArr = new String[length];
+        Item[] newArr = (Item[]) new Object[length];
         for (int i = 0; i < N; i++) {
             newArr[i] = arr[i];
         }
@@ -38,7 +38,7 @@ public class ResizingArrayStackOfStrings {
     }
 
     public static void main(String[] args) {
-        ResizingArrayStackOfStrings stack = new ResizingArrayStackOfStrings();
+        ResizingArrayStack<String> stack = new ResizingArrayStack<String>();
         stack.push("hello");
         stack.push("boop");
         stack.push("bye");

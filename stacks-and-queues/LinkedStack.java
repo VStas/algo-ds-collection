@@ -1,21 +1,21 @@
-public class LinkedStackOfStrings {
+public class LinkedStack<Item> {
 
     private Node first = null;
 
     private class Node {
-        String item;
+        Item item;
         Node next;
     }
 
-    public void push(String item) {
+    public void push(Item item) {
         Node oldFirst = first;
         first = new Node();
         first.item = item;
         first.next = oldFirst;
     }
 
-    public String pop() {
-        String item = first.item;
+    public Item pop() {
+        Item item = first.item;
         first = first.next;
         return item;
     }
@@ -25,7 +25,7 @@ public class LinkedStackOfStrings {
     }
 
     public static void main(String[] args) {
-        LinkedStackOfStrings stack = new LinkedStackOfStrings();
+        LinkedStack<String> stack = new LinkedStack<String>();
         stack.push("hello");
         stack.push("boop");
         stack.push("bye");

@@ -1,21 +1,21 @@
 import java.util.Arrays;
 
 
-public class ResizingArrayQueueOfStrings {
+public class ResizingArrayQueue<Item> {
     private int N = 0; // num of elements in queue
     private int start = 0;
     private int end = 0;
-    private String[] arr;
+    private Item[] arr;
 
-    public ResizingArrayQueueOfStrings() {
-        arr = new String[1];
+    public ResizingArrayQueue() {
+        arr = (Item[]) new Object[1];
     }
 
     public boolean isEmpty() {
         return N == 0;
     }
 
-    public void enqueue(String item) {
+    public void enqueue(Item item) {
         if (N == arr.length) {
             resize(2 * arr.length);
         }
@@ -25,9 +25,9 @@ public class ResizingArrayQueueOfStrings {
         // System.out.println(Arrays.toString(arr));
     }
 
-    public String dequeue() {
+    public Item dequeue() {
         N -= 1;
-        String item = arr[start];
+        Item item = arr[start];
         arr[start] = null;
         start = (start + 1) % arr.length;
         if (N > 0 && N == arr.length / 4) {
@@ -38,7 +38,7 @@ public class ResizingArrayQueueOfStrings {
     }
 
     private void resize(int length) {
-        String[] newArr = new String[length];
+        Item[] newArr = (Item[]) new Object[length];
         for (int i = 0; i < N; i++) {
             newArr[i] = arr[(start + i) % arr.length];
         }
@@ -53,7 +53,7 @@ public class ResizingArrayQueueOfStrings {
     }
 
     public static void test1() {
-        ResizingArrayQueueOfStrings queue = new ResizingArrayQueueOfStrings();
+        ResizingArrayQueue<String> queue = new ResizingArrayQueue<String>();
         queue.enqueue("hello");
         queue.enqueue("boop");
         queue.enqueue("bye");
@@ -65,7 +65,7 @@ public class ResizingArrayQueueOfStrings {
     }
 
     public static void test2() {
-        ResizingArrayQueueOfStrings queue = new ResizingArrayQueueOfStrings();
+        ResizingArrayQueue<String> queue = new ResizingArrayQueue<String>();
         queue.enqueue("1");
         queue.enqueue("2");
         queue.enqueue("3");

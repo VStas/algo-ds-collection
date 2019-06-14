@@ -1,9 +1,9 @@
-public class LinkedQueueOfStrings {
+public class LinkedQueue<Item> {
 
     private Node first, last;
 
     private class Node {
-        String item;
+        Item item;
         Node next;
     }
 
@@ -11,7 +11,7 @@ public class LinkedQueueOfStrings {
         return first == null;
     }
 
-    public void enqueue(String item) {
+    public void enqueue(Item item) {
         Node prevLast = last;
         last = new Node();
         last.item = item;
@@ -22,8 +22,8 @@ public class LinkedQueueOfStrings {
         }
     }
 
-    public String dequeue() {
-        String item = first.item;
+    public Item dequeue() {
+        Item item = first.item;
         first = first.next;
         if (isEmpty()) {
             last = null;
@@ -32,7 +32,7 @@ public class LinkedQueueOfStrings {
     }
 
     public static void main(String[] args) {
-        LinkedQueueOfStrings queue = new LinkedQueueOfStrings();
+        LinkedQueue<String> queue = new LinkedQueue<String>();
         queue.enqueue("hello");
         queue.enqueue("boop");
         queue.enqueue("bye");
