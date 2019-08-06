@@ -11,7 +11,7 @@ public class QuickSort {
             }
 
             while (less(a[lo], a[--j])) {
-                if (j <= lo) break;
+                if (j <= lo) break; // redundant (from lecture)
             }
 
             if (j <= i) {
