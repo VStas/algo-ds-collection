@@ -1,8 +1,8 @@
-public class MaxPQ<Key extends Comparable<Key>> {
+public class MinPQ<Key extends Comparable<Key>> {
     private Key[] pq;
     private int N;
 
-    public MaxPQ(int capacity) {
+    public MinPQ(int capacity) {
         pq = (Key[]) new Comparable[capacity + 1]; // we start from index 1, not 0
     }
 
@@ -19,7 +19,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
         swim(N);
     }
 
-    public Key delMax() {
+    public Key delMin() {
         Key max = pq[1];
         exch(1, N--);
         sink(1);
@@ -27,12 +27,12 @@ public class MaxPQ<Key extends Comparable<Key>> {
         return max;
     }
 
-    public Key findMax() {
+    public Key findMin() {
         return pq[1];
     }
 
     private void swim(int k) {
-        while (k > 1 && less(k/2, k)) {
+        while (k > 1 && greater(k/2, k)) {
             exch(k, k/2);
             k = k/2;
         }
@@ -41,15 +41,15 @@ public class MaxPQ<Key extends Comparable<Key>> {
     private void sink(int k) {
         while (2*k <= N) {
             int j = 2*k;
-            if (j < N && less(j, j+1)) j++;
-            if (!less(k, j)) break;
+            if (j < N && greater(j, j+1)) j++;
+            if (!greater(k, j)) break;
             exch(k, j);
             k = j;
         }
     }
 
-    private boolean less(int i, int j) {
-        return pq[i].compareTo(pq[j]) < 0;
+    private boolean greater(int i, int j) {
+        return pq[i].compareTo(pq[j]) > 0;
     }
 
     private void exch(int i, int j) {
@@ -59,14 +59,14 @@ public class MaxPQ<Key extends Comparable<Key>> {
     }
 
     public static void main(String[] args) {
-        MaxPQ<Integer> pq = new MaxPQ<Integer>(5);
+        MinPQ<Integer> pq = new MinPQ<Integer>(5);
         pq.insert(2);
         pq.insert(100);
         pq.insert(3);
         pq.insert(200);
         pq.insert(1);
-        System.out.println(pq.delMax());
-        System.out.println(pq.delMax());
-        System.out.println(pq.delMax());
+        System.out.println(pq.delMin());
+        System.out.println(pq.delMin());
+        System.out.println(pq.delMin());
     }
 }
